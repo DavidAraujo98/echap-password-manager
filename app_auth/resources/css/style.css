@@ -1,0 +1,27 @@
+#profile {
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vh;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+}
+
+.admin {
+  visibility: hidden;
+  display: none;
+}
+
+.logged {
+  visibility: hidden;
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+  display: initial;
+}

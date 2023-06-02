@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAP Vault</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js" integrity="sha512-QkO9sBiE1vi+hFY7yO9Zo4rIrgUHBydF77a3SfX5Rj+VqoA+XYrv/77n17Pki3IXnQHN2ReqxvUykN1sChUQTw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+        integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="resources\js\main.js"></script>
+
+    <script src="resources\js\vault.js"></script>
+
+    <link rel="stylesheet" href="resources\css\style.css">
+</head>
+
+<body onload="open();" class="d-flex flex-column justify-content-center align-items-center p-2">
+    <section class="my-1 card" style="width: 95%;">
+        <div class="card-body">
+            <ul class="d-flex justify-content-between list-group list-group-horizontal">
+                <h1 id="username" class="text-success"></h1>
+                    <button type="button" onclick="logout()" class="btn btn-danger mx-1">Logout</button>
+            </ul>
+        </div>
+    </section>
+    <section class="my-1 card" style="width: 95%;">
+        <div class="card-body">
+            <ul class="d-flex justify-content-between list-group list-group-horizontal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreator">New Credentials</button>
+                <ul class="d-flex list-group list-group-horizontal">
+                    <button id="selectall" type="button" class="btn btn-outline-warning mx-1" data-bs-toggle="button" value="false" onclick="selectAll()">Select All</button>
+                    <button type="button" class="btn btn-danger mx-1" onclick="deleteSelection()">Delete Selection</button>
+                </ul>
+            </ul>
+        </div>
+    </section>
+    <section class="my-1 card" style="width: 95%;" hidden>
+        <div id="list" class="card-body">
+        </div>
+    </section>
+    <div class="modal fade" id="modalCreator" tabindex="-1" aria-labelledby="modalCreatorLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalCreatorLabel">New Credentials</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" >
+                    <ul class="d-flex justify-content-between list-group list-group">
+                        <label for="fservice">Service</label>
+                        <input id="fservice" type="text" required="required" placeholder="Host (ex: 127.0.0.1:8080)"/>
+                        <label for="fusername">Username</label>
+                        <input id="fusername" type="text" required="required"/>
+                        <label for="fpassword">Password</label>
+                        <input id="fpassword" type="password" required="required"/>
+                        <div>
+                            <input type="checkbox" onclick="visible()"> Show Password
+                        </div>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="newCredentials()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
